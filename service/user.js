@@ -5,6 +5,16 @@ const createUser = async ({ displayName, email, password, image }) => {
   return product;
 };
 
+const emailExist = async (email) => {
+  const emailsCount = await User.count({
+    where: {
+      email,
+    },
+  });
+  return emailsCount;
+};
+
 module.exports = {
   createUser,
+  emailExist,
 };

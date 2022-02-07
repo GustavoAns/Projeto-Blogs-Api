@@ -6,6 +6,14 @@ const createUser = async (req, res) => {
   return res.status(201).json(product);
 };
 
+const emailExist = async (req, res, next) => {
+  const { email } = req.body;
+  const emailsCount = await userService.emailExist(email);
+  if (emailsCount > 0) return res.status(409).json({ message: 'User already registeered' });
+  return next();
+};
+
 module.exports = {
   createUser,
+  emailExist,
 };
