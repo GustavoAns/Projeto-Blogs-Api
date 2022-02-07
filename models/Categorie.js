@@ -5,5 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
     tableName: 'Categories',
   });
+
+  Categorie.associate = (models) => {
+    Categorie.hasMany(models.PostCategorie);
+  };
+
   return Categorie;
 };

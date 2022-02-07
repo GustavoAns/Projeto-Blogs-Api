@@ -9,7 +9,7 @@ const createUser = async (req, res) => {
 const emailExist = async (req, res, next) => {
   const { email } = req.body;
   const emailsCount = await userService.emailExist(email);
-  if (emailsCount > 0) return res.status(409).json({ message: 'User already registeered' });
+  if (emailsCount > 0) return res.status(409).json({ message: 'User already registered' });
   return next();
 };
 
