@@ -21,3 +21,7 @@ app.post('/user', validUser.validPassword, validUser.validEmail, validUser.valid
 app.post('/login', validLogin.validEmail, validLogin.validPassword, loginController.emailExist);
 
 app.get('/user', validUser.validToken, userController.getAll);
+
+app.get('/user/:id', validUser.validToken, userController.getById);
+
+app.post('/categories', validUser.validToken, userController.getById);
