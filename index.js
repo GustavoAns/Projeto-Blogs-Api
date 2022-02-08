@@ -28,3 +28,5 @@ app.get('/user/:id', validUser.validToken, userController.getById);
 
 app.post('/categories', validCategorie.validToken, validCategorie.validName,
   categorieController.createCategorie);
+
+app.get('/categories', validCategorie.validToken, categorieController.getAll);

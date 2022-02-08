@@ -8,6 +8,12 @@ const createCategorie = async (name) => {
   return data;
 };
 
+const getAll = async () => {
+  const users = await Categorie.findAll();
+  return users;
+};
+
 module.exports = {
   createCategorie,
+  getAll,
 };
