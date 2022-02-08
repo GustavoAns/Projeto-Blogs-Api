@@ -3,9 +3,11 @@ const bodyParser = require('body-parser');
 const userController = require('./controller/user');
 const loginController = require('./controller/login');
 const categorieController = require('./controller/categorie');
+const postController = require('./controller/post');
 const validUser = require('./middlewares/validUser');
 const validLogin = require('./middlewares/validLogin');
 const validCategorie = require('./middlewares/validCategorie');
+const validPost = require('./middlewares/validPost');
 
 const app = express();
 app.use(bodyParser.json());
@@ -30,3 +32,5 @@ app.post('/categories', validCategorie.validToken, validCategorie.validName,
   categorieController.createCategorie);
 
 app.get('/categories', validCategorie.validToken, categorieController.getAll);
+
+app.post('/post', validPost.validBody, validPost.validToken, postController.validCategory, postController.createPost);
