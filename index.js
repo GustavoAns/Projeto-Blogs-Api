@@ -33,4 +33,7 @@ app.post('/categories', validCategorie.validToken, validCategorie.validName,
 
 app.get('/categories', validCategorie.validToken, categorieController.getAll);
 
-app.post('/post', validPost.validBody, validPost.validToken, postController.validCategory, postController.createPost);
+app.post('/post', validPost.validBody, validPost.validToken, postController.validCategory,
+  postController.createPost);
+
+app.get('/post', validPost.validToken, postController.getAll);
