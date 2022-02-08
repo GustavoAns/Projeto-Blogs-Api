@@ -1,5 +1,5 @@
 // const jwt = require('jsonwebtoken');
-const { Blogpost, Categorie, User } = require('../models');
+const { Blogpost, Categorie } = require('../models');
 
 const createPost = async ({ title, content, userId }) => {
   const newPost = await Blogpost.create({ title, content, userId });
