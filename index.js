@@ -2,8 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const userController = require('./controller/user');
 const loginController = require('./controller/login');
+const categorieController = require('./controller/categorie');
 const validUser = require('./middlewares/validUser');
 const validLogin = require('./middlewares/validLogin');
+const validCategorie = require('./middlewares/validCategorie');
 
 const app = express();
 app.use(bodyParser.json());
@@ -24,4 +26,5 @@ app.get('/user', validUser.validToken, userController.getAll);
 
 app.get('/user/:id', validUser.validToken, userController.getById);
 
-app.post('/categories', validUser.validToken, userController.getById);
+app.post('/categories', validCategorie.validToken, validCategorie.validName,
+  categorieController.createCategorie);
