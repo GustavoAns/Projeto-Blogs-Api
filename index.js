@@ -19,3 +19,5 @@ app.post('/user', validUser.validPassword, validUser.validEmail, validUser.valid
   userController.emailExist, userController.createUser);
 
 app.post('/login', validLogin.validEmail, validLogin.validPassword, loginController.emailExist);
+
+app.get('/user', validUser.validToken, userController.getAll);

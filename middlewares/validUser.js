@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 const validUser = async (req, res, next) => {
   const { displayName } = req.body;
   if (displayName.length < 8) {
@@ -19,14 +21,25 @@ const validEmail = async (req, res, next) => {
 const validPassword = async (req, res, next) => {
   const { password } = req.body;
   if (!password) return res.status(400).json({ message: '"password" is required' });
-  console.log(`Senha ${password.length}`);
   if (password.length === 6) {
     return next();
   }
   return res.status(400).json({ message: '"password" length must be 6 characters long' });
 };
 
+const validToken = async (req, res, next) => {
+  const { authorization } = req.headers;
+  if (!authorization) return res.status(401).json({ message: 'Token not found' });
+  try {
+    jwt.verify(authorization, 'trybe');
+    next();
+  } catch (_) {
+    return res.status(401).json({ message: 'Expired or invalid token' });
+  }
+};
+
 module.exports = {
+  validToken,
   validUser,
   validEmail,
   validPassword,

@@ -7,13 +7,12 @@ const emailExist = async (email, password) => {
       email,
     },
   });
-  console.log(emailFind);
   if (emailFind === null) return null;
   if (emailFind.dataValues.password === password) {
     const token = jwt.sign(emailFind.dataValues, 'trybe', {
       algorithm: 'HS256',
     });
-    return token;
+    return { token };
   }
   return null;
 };

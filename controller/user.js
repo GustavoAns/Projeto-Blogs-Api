@@ -13,7 +13,13 @@ const emailExist = async (req, res, next) => {
   return next();
 };
 
+const getAll = async (_req, res) => {
+  const users = await userService.getAll();
+  return res.status(200).json(users);
+};
+
 module.exports = {
+  getAll,
   createUser,
   emailExist,
 };
