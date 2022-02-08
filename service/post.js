@@ -29,7 +29,7 @@ const validCategory = async (categoryIds) => {
 };
 
 const getAll = async () => {
-  const posts = await Blogpost.findAll({ include: [User, Categorie] });
+  const posts = await Blogpost.findAll();
   return posts;
 };
 
