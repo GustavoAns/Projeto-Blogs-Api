@@ -18,7 +18,7 @@ const validCategory = async (req, res, next) => {
   } 
 };
 
-const getAll = async (req, res) => {
+const getAll = async (_req, res) => {
   const product = await postService.getAll();
   return res.status(200).json(product);
 };
