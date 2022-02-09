@@ -20,7 +20,7 @@ const validCategory = async (req, res, next) => {
 
 const getAll = async (req, res) => {
   const product = await postService.getAll();
-  return res.status(201).json(product);
+  return res.status(200).json(product);
 };
 
 module.exports = {

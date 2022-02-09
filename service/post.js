@@ -1,5 +1,5 @@
 // const jwt = require('jsonwebtoken');
-const { Blogpost, Categorie } = require('../models');
+const { Blogpost, Categorie, User } = require('../models');
 
 const createPost = async ({ title, content, userId }) => {
   const newPost = await Blogpost.create({ title, content, userId });
@@ -29,7 +29,10 @@ const validCategory = async (categoryIds) => {
 };
 
 const getAll = async () => {
-  const posts = await Blogpost.findAll();
+  const posts = await Blogpost.findAll({ include: [
+      { model: User, as: 'user' },
+      { model: Categorie, as: 'categories', through: { attributes: [] } },
+  ] });
   return posts;
 };
 
